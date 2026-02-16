@@ -1,0 +1,28 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "MS Sans Serif", Tahoma, Verdana, Arial, sans-serif;
+  background: #202531;
+  color: #000;
+}
+
+a {
+  color: inherit;
+}
+
+h2,
+h3,
+p,
+ul {
+  margin-top: 0;
+}
