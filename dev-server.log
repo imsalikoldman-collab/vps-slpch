@@ -8,3 +8,64 @@
 
  ✓ Starting...
  ✓ Ready in 2.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 4.7s (731 modules)
+ GET / 200 in 5138ms
+ ○ Compiling /personnel ...
+ ✓ Compiled /personnel in 690ms (707 modules)
+ GET /personnel 200 in 1048ms
+ GET / 200 in 46ms
+ ○ Compiling /cases ...
+ ✓ Compiled /cases in 592ms (711 modules)
+ GET /cases 200 in 883ms
+ GET / 200 in 35ms
+ ○ Compiling /psi ...
+ ✓ Compiled /psi in 566ms (714 modules)
+ GET /psi 200 in 829ms
+ GET / 200 in 36ms
+ GET /personnel 200 in 37ms
+ GET / 200 in 23ms
+ GET /cases 200 in 29ms
+ GET / 200 in 14ms
+ GET /psi 200 in 27ms
+ GET / 200 in 26ms
+ GET /cases 200 in 57ms
+ GET / 200 in 27ms
+ ○ Compiling /partners ...
+ ✓ Compiled /partners in 797ms (717 modules)
+ GET /partners 200 in 1147ms
+ GET / 200 in 126ms
+ GET / 200 in 18ms
+ GET /psi 200 in 42ms
+ GET / 200 in 17ms
+ GET /partners 200 in 19ms
+ GET / 200 in 15ms
+ GET /personnel 200 in 29ms
+ GET / 200 in 18ms
+ GET /cases 200 in 39ms
+ GET / 200 in 22ms
+ GET /psi 200 in 34ms
+ GET / 200 in 26ms
+ GET /personnel 200 in 33ms
+ GET / 200 in 28ms
+ GET /partners 200 in 21ms
+ GET / 200 in 17ms
+ GET /psi 200 in 26ms
+ GET / 200 in 15ms
+ GET /personnel 200 in 20ms
+ GET / 200 in 14ms
+ GET /personnel 200 in 32ms
+ GET / 200 in 31ms
+ GET /personnel 200 in 36ms
+ GET / 200 in 30ms
+ GET /partners 200 in 28ms
+ GET / 200 in 30ms
+ GET /cases 200 in 36ms
+ GET / 200 in 29ms
+ GET /psi 200 in 38ms
+ GET / 200 in 34ms
+ GET /cases 200 in 40ms
+ GET / 200 in 32ms
+ GET /psi 200 in 38ms
+
+D:\STORAGE DATA\VisualStudioCode\[VPS]\slpch>
