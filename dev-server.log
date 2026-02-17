@@ -1,71 +1,64 @@
 
 > slpch-retro-scu@0.1.0 dev
-> next dev --hostname 0.0.0.0 --port 3000
+> next dev --hostname 127.0.0.1 --port 3000
 
    ▲ Next.js 15.2.0
-   - Local:        http://localhost:3000
-   - Network:      http://0.0.0.0:3000
+   - Local:        http://127.0.0.1:3000
+   - Network:      http://127.0.0.1:3000
+   - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 2.9s
+ ✓ Ready in 3.7s
+ ○ Compiling /api/admin/login ...
+ ✓ Compiled /api/admin/login in 1416ms (396 modules)
+ POST /api/admin/login 200 in 1836ms
+ ○ Compiling /api/admin/psi ...
+ ✓ Compiled /api/admin/psi in 2.5s (403 modules)
+ GET /api/admin/psi 200 in 4992ms
+ ✓ Compiled /api/admin/psi/[id] in 217ms (405 modules)
+ ⨯ Error [PrismaClientKnownRequestError]: Transaction API error: Unable to start a transaction in the given time.
+    at async updatePsiCard (lib\psi-data.ts:104:18)
+    at async PATCH (app\api\admin\psi\[id]\route.ts:45:15)
+  102 |   }
+  103 |
+> 104 |   const updated = await prisma.$transaction(async (tx) => {
+      |                  ^
+  105 |     await tx.psiCardBullet.deleteMany({
+  106 |       where: { cardId: id },
+  107 |     }); {
+  code: 'P2028',
+  meta: undefined,
+  clientVersion: '6.19.2'
+}
+ ⨯ Error [PrismaClientKnownRequestError]: Transaction API error: Unable to start a transaction in the given time.
+    at async updatePsiCard (lib\psi-data.ts:104:18)
+    at async PATCH (app\api\admin\psi\[id]\route.ts:45:15)
+  102 |   }
+  103 |
+> 104 |   const updated = await prisma.$transaction(async (tx) => {
+      |                  ^
+  105 |     await tx.psiCardBullet.deleteMany({
+  106 |       where: { cardId: id },
+  107 |     }); {
+  code: 'P2028',
+  meta: undefined,
+  clientVersion: '6.19.2'
+}
+ PATCH /api/admin/psi/1 500 in 5676ms
+ ✓ Compiled in 969ms (100 modules)
+ POST /api/admin/login 200 in 51ms
+ GET /api/admin/psi 200 in 2092ms
+ PATCH /api/admin/psi/1 200 in 4156ms
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 1949ms (940 modules)
+ GET /admin 200 in 4562ms
+ ○ Compiling /api/media/psi/[file] ...
+ ✓ Compiled /api/media/psi/[file] in 2.1s (964 modules)
+ GET /_next/static/chunks/main-app.js?v=1771360680273 404 in 3244ms
+ GET /api/media/psi/1771360576034-save-check.png 404 in 5117ms
  ○ Compiling / ...
- ✓ Compiled / in 4.7s (731 modules)
- GET / 200 in 5138ms
- ○ Compiling /personnel ...
- ✓ Compiled /personnel in 690ms (707 modules)
- GET /personnel 200 in 1048ms
- GET / 200 in 46ms
- ○ Compiling /cases ...
- ✓ Compiled /cases in 592ms (711 modules)
- GET /cases 200 in 883ms
- GET / 200 in 35ms
- ○ Compiling /psi ...
- ✓ Compiled /psi in 566ms (714 modules)
- GET /psi 200 in 829ms
- GET / 200 in 36ms
- GET /personnel 200 in 37ms
- GET / 200 in 23ms
- GET /cases 200 in 29ms
- GET / 200 in 14ms
- GET /psi 200 in 27ms
- GET / 200 in 26ms
- GET /cases 200 in 57ms
- GET / 200 in 27ms
- ○ Compiling /partners ...
- ✓ Compiled /partners in 797ms (717 modules)
- GET /partners 200 in 1147ms
- GET / 200 in 126ms
- GET / 200 in 18ms
- GET /psi 200 in 42ms
- GET / 200 in 17ms
- GET /partners 200 in 19ms
- GET / 200 in 15ms
- GET /personnel 200 in 29ms
- GET / 200 in 18ms
- GET /cases 200 in 39ms
- GET / 200 in 22ms
- GET /psi 200 in 34ms
- GET / 200 in 26ms
- GET /personnel 200 in 33ms
- GET / 200 in 28ms
- GET /partners 200 in 21ms
- GET / 200 in 17ms
- GET /psi 200 in 26ms
- GET / 200 in 15ms
- GET /personnel 200 in 20ms
- GET / 200 in 14ms
- GET /personnel 200 in 32ms
- GET / 200 in 31ms
- GET /personnel 200 in 36ms
- GET / 200 in 30ms
- GET /partners 200 in 28ms
- GET / 200 in 30ms
- GET /cases 200 in 36ms
- GET / 200 in 29ms
- GET /psi 200 in 38ms
- GET / 200 in 34ms
- GET /cases 200 in 40ms
- GET / 200 in 32ms
- GET /psi 200 in 38ms
-
-D:\STORAGE DATA\VisualStudioCode\[VPS]\slpch>
+ ✓ Compiled / in 1207ms (973 modules)
+ GET / 200 in 1964ms
+ GET /_next/static/chunks/main-app.js?v=1771360701176 404 in 152ms
+ GET / 200 in 66ms
+ GET /_next/static/chunks/main-app.js?v=1771360708934 404 in 107ms

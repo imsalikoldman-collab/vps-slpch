@@ -1,3 +1,4 @@
+// Legacy reference only. Runtime source for PSI cards is PostgreSQL via Prisma.
 export interface PsiEntry {
   name: string;
   nameHref?: string;

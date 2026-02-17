@@ -80,6 +80,18 @@
   height: 112px;
 }
 
+.header-logo-btn {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.header-logo-btn:focus-visible .badge,
+.header-logo-btn:hover .badge {
+  box-shadow: 0 0 0 2px rgb(255 204 0 / 55%);
+}
+
 .badge {
   width: 100%;
   height: 100%;
@@ -236,6 +248,84 @@
   margin-bottom: 8px;
 }
 
+.migration-badge {
+  margin-bottom: 16px;
+  padding: 7px 10px;
+  border: 1px solid #9c7f12;
+  background: rgb(255 217 84 / 34%);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.rich-block p {
+  margin-bottom: 8px;
+}
+
+.rich-block p:last-child {
+  margin-bottom: 0;
+}
+
+.classified-visible {
+  background: #101010;
+  color: #d6ffd0;
+  padding: 0 4px;
+}
+
+.psi-photo-wrap {
+  height: 100%;
+  min-height: 320px;
+  border: 1px solid #2f343a;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%);
+  background: linear-gradient(180deg, #aeb5ba, #8b9198);
+  overflow: hidden;
+}
+
+.psi-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.psi-photo-empty {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #2f343a;
+}
+
+.psi-record {
+  border: 1px solid #6f767e;
+  background: linear-gradient(180deg, rgb(255 255 255 / 26%), rgb(255 255 255 / 12%));
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 20%);
+  padding: 10px 12px 12px;
+}
+
+.psi-record-head {
+  margin-bottom: 10px;
+}
+
+.psi-record-head .meta {
+  margin-bottom: 0;
+}
+
+.psi-record-body {
+  display: grid;
+  grid-template-columns: minmax(170px, 230px) minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.psi-record-content {
+  min-width: 0;
+}
+
+.psi-record-content .rich-block p:first-child {
+  margin-top: 0;
+}
+
 .conclusion {
   margin-top: 8px;
 }
@@ -266,6 +356,351 @@
 
 .redacted:hover {
   background: #000080;
+}
+
+.admin-login-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: rgb(0 0 0 / 56%);
+  padding: 20px;
+}
+
+.admin-login-panel {
+  width: min(680px, 94vw);
+  border: 2px solid #88ef88;
+  background: rgb(2 25 2 / 92%);
+  color: #9dff8e;
+  box-shadow: 0 0 0 2px rgb(25 71 25 / 50%);
+  padding: 16px;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.login-line {
+  margin: 0 0 6px;
+  letter-spacing: 1px;
+}
+
+.admin-login-form {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.admin-login-form label {
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.admin-login-form input {
+  border: 1px solid #66b966;
+  background: rgb(0 0 0 / 65%);
+  color: #9dff8e;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 6px 8px;
+}
+
+.admin-login-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-login-actions button {
+  border: 1px solid #66b966;
+  background: rgb(0 0 0 / 65%);
+  color: #9dff8e;
+  font-family: inherit;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.admin-login-actions button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.login-error {
+  margin: 0;
+  color: #ff8f8f;
+  font-size: 13px;
+}
+
+.admin-page {
+  padding-bottom: 70px;
+}
+
+.admin-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.admin-logout-btn {
+  border: 1px solid #2a3038;
+  background: #ccd2d3;
+  font-size: 12px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.admin-section-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.admin-section-tabs button {
+  border: 1px solid #2a3038;
+  background: #d9dddd;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.admin-section-tabs button.active {
+  background: #000080;
+  color: #fff;
+}
+
+.admin-module-placeholder {
+  border: 1px dashed #4c5360;
+  padding: 16px 14px;
+  background: rgb(255 255 255 / 20%);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-psi-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 290px) minmax(0, 1fr);
+  gap: 12px;
+}
+
+.admin-psi-list {
+  border: 1px solid #8d9498;
+  background: rgb(255 255 255 / 24%);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-psi-list-head {
+  border-bottom: 1px solid #8d9498;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-psi-list-head button {
+  border: 1px solid #2a3038;
+  background: #d4d8da;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin-psi-list-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-psi-list-item {
+  border: 0;
+  border-bottom: 1px solid #8d9498;
+  background: transparent;
+  padding: 8px;
+  text-align: left;
+  cursor: pointer;
+  display: grid;
+  gap: 2px;
+}
+
+.admin-psi-list-item span {
+  font-weight: 700;
+}
+
+.admin-psi-list-item small {
+  opacity: 0.75;
+}
+
+.admin-psi-list-item.active {
+  background: #000080;
+  color: #fff;
+}
+
+.admin-psi-editor {
+  border: 1px solid #8d9498;
+  background: rgb(255 255 255 / 24%);
+  padding: 10px;
+}
+
+.admin-row-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.admin-row-grid label,
+.admin-photo-block label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.admin-row-grid input,
+.admin-photo-block input,
+.admin-bullet-controls input {
+  border: 1px solid #5b6168;
+  background: #f8f8f8;
+  padding: 5px 7px;
+  font-family: inherit;
+}
+
+.admin-photo-block {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.upload-label {
+  align-self: flex-end;
+}
+
+.admin-photo-preview {
+  grid-column: 1 / -1;
+  max-width: 240px;
+  height: auto;
+  border: 1px solid #2f343a;
+}
+
+.admin-editor-block {
+  margin-bottom: 12px;
+}
+
+.admin-editor-block > p {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.admin-editor-skeleton {
+  border: 1px solid #5b6168;
+  background: #eef1f1;
+  font-size: 12px;
+  padding: 8px;
+}
+
+.admin-editor {
+  border: 1px solid #5b6168;
+  background: #f6f8f8;
+}
+
+.admin-editor-toolbar {
+  border-bottom: 1px solid #5b6168;
+  padding: 6px;
+  display: flex;
+  gap: 6px;
+}
+
+.admin-editor-toolbar button,
+.admin-bullet-controls button,
+.admin-actions-row button {
+  border: 1px solid #2a3038;
+  background: #d4d8da;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin-editor-toolbar button.active {
+  background: #000080;
+  color: #fff;
+}
+
+.admin-editor-content {
+  min-height: 110px;
+  padding: 8px;
+  outline: none;
+  line-height: 1.35;
+  white-space: pre-wrap;
+}
+
+.admin-editor-content p {
+  margin-bottom: 8px;
+}
+
+.admin-editor-content p:last-child {
+  margin-bottom: 0;
+}
+
+.classified-token {
+  background: #000;
+  color: #89ff89;
+  padding: 0 4px;
+}
+
+.admin-bullets-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.admin-bullets-head p {
+  margin: 0;
+}
+
+.admin-bullet-editor {
+  border: 1px dashed #636c76;
+  padding: 8px;
+  margin-bottom: 8px;
+  background: rgb(255 255 255 / 20%);
+}
+
+.admin-bullet-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+  align-items: flex-end;
+}
+
+.admin-bullet-controls label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.admin-actions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.admin-status {
+  margin-top: 12px;
+  padding: 8px 10px;
+  border: 1px dashed #2f343a;
+  font-size: 13px;
+}
+
+.admin-status.ok {
+  background: rgb(130 255 160 / 20%);
+}
+
+.admin-status.error {
+  background: rgb(255 124 124 / 18%);
 }
 
 .crt-layer {
@@ -516,5 +951,23 @@
   .menu-item {
     width: 100%;
     margin-right: 0;
+  }
+
+  .admin-psi-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-row-grid,
+  .admin-photo-block {
+    grid-template-columns: 1fr;
+  }
+
+  .psi-record-body {
+    grid-template-columns: 1fr;
+  }
+
+  .psi-photo-wrap {
+    min-height: 260px;
+    max-height: 360px;
   }
 }

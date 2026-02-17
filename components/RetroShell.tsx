@@ -1,10 +1,12 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useState } from "react";
 
 import { useFx } from "@/context/FxContext";
 
 import AccessBar from "@/components/AccessBar";
+import AdminLoginOverlay from "@/components/AdminLoginOverlay";
 import PrefsPanel from "@/components/PrefsPanel";
 import RouteFxOverlay from "@/components/RouteFxOverlay";
 import StatusFooter from "@/components/StatusFooter";
@@ -16,13 +18,14 @@ interface RetroShellProps {
 
 export default function RetroShell({ children }: RetroShellProps) {
   const { preferences } = useFx();
+  const [loginOpen, setLoginOpen] = useState(false);
 
   return (
     <div className={`retro-root ${preferences.safeMode ? "fx-safe" : "fx-max"}`}>
       <div className="monitor-stage" aria-hidden />
 
       <div className="retro-window">
-        <TopHeader />
+        <TopHeader onBadgeClick={() => setLoginOpen(true)} />
         <AccessBar />
         <PrefsPanel />
 
@@ -35,6 +38,7 @@ export default function RetroShell({ children }: RetroShellProps) {
       </div>
 
       <RouteFxOverlay />
+      <AdminLoginOverlay open={loginOpen} onClose={() => setLoginOpen(false)} />
     </div>
   );
 }

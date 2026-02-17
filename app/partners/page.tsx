@@ -8,6 +8,7 @@ export default function PartnersPage() {
   return (
     <section className="page content">
       <h2>{title}</h2>
+      <div className="migration-badge">Раздел в режиме миграции. Данные будут перенесены в админ-панель.</div>
 
       <div className="partner-block">
         <h3>{center.title}</h3>

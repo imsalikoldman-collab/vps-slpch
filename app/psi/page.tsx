@@ -1,119 +1,99 @@
-import Redacted from "@/components/Redacted";
 import RetroLink from "@/components/RetroLink";
-import { psiPageData } from "@/content/psi";
+import { listPsiCards } from "@/lib/psi-data";
+import { renderRichDoc } from "@/lib/psi-richtext";
 
-function renderIntroText(text: string) {
-  if (text.includes("аномальных / необъяснимых")) {
-    return (
-      <>
-        Частное лицо. В настоящее время осуществляет деятельность, связанную с документированием и публичным освещением{" "}
-        <Redacted>аномальных / необъяснимых</Redacted> явлений (онлайн-платформа).
-      </>
-    );
-  }
+export const dynamic = "force-dynamic";
 
-  if (text.includes("аномальных артефактов")) {
-    return (
-      <>
-        Сотрудник Исследовательского Центра Пу Сунлин, ассистент Главного Хранителя коллекции{" "}
-        <Redacted>аномальных артефактов</Redacted>.
-      </>
-    );
-  }
+const PAGE_TITLE = "Лица особого интереса";
+const PAGE_NOTICE =
+  "Данный перечень подлежит регулярному пересмотру. Уровень угрозы и статус лиц могут быть изменены без предварительного уведомления.";
 
-  if (text.includes("неустановленного происхождения")) {
-    return (
-      <>
-        Независимый паранормальный консультант. Владелец магазина по продаже предметов{" "}
-        <Redacted>неустановленного происхождения</Redacted>.
-      </>
-    );
-  }
-
-  if (text.includes("[ДАННЫЕ УДАЛЕНЫ]")) {
-    return (
-      <>
-        Сотрудник юридической фирмы <Redacted>[ДАННЫЕ УДАЛЕНЫ]</Redacted>.
-      </>
-    );
-  }
-
-  return text;
+function buildMeta(age: number | null, citizenship: string, status: string): string {
+  const ageValue = age === null ? "неизвестен" : String(age);
+  return `Возраст: ${ageValue} | Гражданство: ${citizenship} | Статус: ${status}`;
 }
 
-export default function PsiPage() {
-  const { entries, notice, title } = psiPageData;
+function resolvePhotoUrl(photoPath: string | null): string | null {
+  if (!photoPath) {
+    return null;
+  }
+  if (photoPath.startsWith("http://") || photoPath.startsWith("https://")) {
+    return photoPath;
+  }
+  if (photoPath.startsWith("psi/")) {
+    return `/api/media/psi/${encodeURIComponent(photoPath.slice(4))}`;
+  }
+  return null;
+}
 
-  return (
-    <section className="page content">
-      <h2>{title}</h2>
+export default async function PsiPage() {
+  try {
+    const cards = await listPsiCards();
 
-      {entries.map((entry) => (
-        <div className="psi-block" key={entry.name}>
-          <h3>
-            {entry.nameHref ? (
-              <RetroLink className="inline-link" href={entry.nameHref}>
-                {entry.name}
-              </RetroLink>
-            ) : (
-              entry.name
-            )}
-          </h3>
+    return (
+      <section className="page content">
+        <h2>{PAGE_TITLE}</h2>
 
-          <p className="meta">{entry.meta}</p>
-          <p>{renderIntroText(entry.intro)}</p>
+        {cards.map((card) => {
+          const photoUrl = resolvePhotoUrl(card.photoPath);
 
-          <ul>
-            {entry.bullets.map((bullet) => {
-              if (bullet.includes("#SCU-19-███") && entry.name.includes("Кан Сонхи")) {
-                if (bullet.includes("подозреваемой")) {
-                  return (
-                    <li key={bullet}>
-                      В [202█-11-04] проходила по делу <RetroLink href="/cases">#SCU-19-███</RetroLink> в качестве
-                      подозреваемой. Ввиду отсутствия доказательной базы была оправдана.
-                    </li>
-                  );
-                }
+          return (
+            <div className="psi-block psi-record" key={card.id}>
+              <div className="psi-record-head">
+                <h3>
+                  {card.nameHref ? (
+                    <RetroLink className="inline-link" href={card.nameHref}>
+                      {card.name}
+                    </RetroLink>
+                  ) : (
+                    card.name
+                  )}
+                </h3>
+                <p className="meta">{buildMeta(card.age, card.citizenship, card.status)}</p>
+              </div>
 
-                return (
-                  <li key={bullet}>
-                    В [202█-10-29] проходила как потерпевшая деле <RetroLink href="/cases">#SCU-19-███</RetroLink>.
-                  </li>
-                );
-              }
+              <div className="psi-record-body">
+                <div className="psi-photo-wrap">
+                  {photoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="psi-photo" src={photoUrl} alt={card.photoAlt || card.name} loading="lazy" />
+                  ) : (
+                    <div className="psi-photo-empty">NO IMAGE</div>
+                  )}
+                </div>
 
-              if (bullet.includes("неустановленного происхождения")) {
-                return (
-                  <li key={bullet}>
-                    Работает в магазине, специализирующемся на торговле предметами{" "}
-                    <Redacted>неустановленного происхождения</Redacted>.
-                  </li>
-                );
-              }
+                <div className="psi-record-content">
+                  <div className="rich-block">{renderRichDoc(card.introDoc, "public", `intro-${card.id}`)}</div>
 
-              if (bullet.includes("неопределённый")) {
-                return (
-                  <li key={bullet}>
-                    Уровень угрозы на данный момент классифицируется как <Redacted>неопределённый</Redacted>.
-                  </li>
-                );
-              }
+                  <ul>
+                    {card.bullets.map((bullet) => (
+                      <li key={bullet.id}>{renderRichDoc(bullet.contentDoc, "public", `bullet-${bullet.id}`)}</li>
+                    ))}
+                  </ul>
 
-              return <li key={bullet}>{bullet}</li>;
-            })}
-          </ul>
+                  <div className="conclusion rich-block">{renderRichDoc(card.conclusionDoc, "public", `conclusion-${card.id}`)}</div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
 
-          <p className="conclusion">
-            <strong>{entry.conclusion.split(":")[0]}:</strong> {entry.conclusion.split(":")[1]?.trim()}
-          </p>
+        <div className="notice">{PAGE_NOTICE}</div>
+
+        <div className="back-link">
+          <RetroLink href="/">← Вернуться в главное меню</RetroLink>
         </div>
-      ))}
-
-      <div className="notice">{notice}</div>
-
-      <div className="back-link">
-        <RetroLink href="/">← Вернуться в главное меню</RetroLink>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  } catch {
+    return (
+      <section className="page content">
+        <h2>{PAGE_TITLE}</h2>
+        <div className="notice">Модуль базы данных недоступен. Проверьте `DATABASE_URL` и миграции Prisma.</div>
+        <div className="back-link">
+          <RetroLink href="/">← Вернуться в главное меню</RetroLink>
+        </div>
+      </section>
+    );
+  }
 }

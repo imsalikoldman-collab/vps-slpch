@@ -5,6 +5,7 @@ export default function PersonnelPage() {
   return (
     <section className="page content">
       <h2>Кадровый реестр</h2>
+      <div className="migration-badge">Раздел в режиме миграции. Данные будут перенесены в админ-панель.</div>
 
       <table className="registry">
         <thead>
