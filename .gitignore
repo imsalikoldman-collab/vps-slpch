@@ -14,6 +14,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+dev-server.log
+prisma-dev-ls-raw.txt
+
+# local uploaded/source media
+uploads/
+storage/media/psi/*
+!storage/media/psi/placeholder.png
 
 # misc
 .DS_Store
