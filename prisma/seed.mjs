@@ -38,6 +38,154 @@ function bullet(paragraphNode) {
   };
 }
 
+const personnelCards = [
+  {
+    displayOrder: 10,
+    registryId: "SCU-███",
+    fullName: "Чхве Сынчоль",
+    role: "Старший инспектор",
+    status: "Активен",
+  },
+  {
+    displayOrder: 20,
+    registryId: "SCU-███",
+    fullName: "Ли Джихун",
+    role: "Оперативный сотрудник",
+    status: "Активен",
+  },
+  {
+    displayOrder: 30,
+    registryId: "SCU-███",
+    fullName: "[ДАННЫЕ УДАЛЕНЫ]",
+    role: "Консультант",
+    status: "Статус засекречен",
+  },
+  {
+    displayOrder: 40,
+    registryId: "SCU-███",
+    fullName: "Ким Мингю",
+    role: "Оперативный сотрудник",
+    status: "Активен",
+  },
+];
+
+const caseCards = [
+  {
+    displayOrder: 10,
+    title: "▣ [202█-11-04] Дело #SCU-19-███",
+    meta: "Статус дела: закрыто | Категория: убийство | Локация: г. Сеул, р-н ██████",
+    introDoc: doc(
+      paragraph(
+        "Дело об убийстве гражданки ",
+        text("[ДАННЫЕ УДАЛЕНЫ]", { classified: true }),
+        ". Голова потерпевшей была обнаружена в жилом помещении Кан Сонхи.",
+      ),
+    ),
+    conclusionDoc: doc(
+      paragraph("Дело закрыто. Убийца не установлен."),
+      paragraph(
+        "Скетчбук, упомянутый в показаниях, был изъят в качестве вещественного доказательства и передан на хранение в Исследовательский Центр Пу Сунлин.",
+      ),
+      paragraph("Ведущий инспектор: ", text("[ДАННЫЕ УДАЛЕНЫ]", { classified: true }), "."),
+    ),
+    bullets: [
+      bullet(paragraph("Кан Сонхи проходила по делу в качестве подозреваемой, однако за недостаточностью улик была оправдана.")),
+      bullet(
+        paragraph(
+          "Психиатрическое заключение указывает, что на момент дачи показаний Кан Сонхи находилась в состоянии острого шока и глубокой психологической травмы.",
+        ),
+      ),
+      bullet(
+        paragraph(
+          "Заявление о том, что художественное изображение манифестировалось, совершило убийство и доставило останки потерпевшей, признано ",
+          text("недостоверным", { classified: true }),
+          ".",
+        ),
+      ),
+    ],
+  },
+  {
+    displayOrder: 20,
+    title: "▣ [202█-10-29] Дело #SCU-19-███",
+    meta: "Статус дела: закрыто | Категория: групповой инцидент | Локация: за пределами г. Сеул",
+    introDoc: doc(
+      paragraph(
+        "Заброшенное культовое сооружение малого размера, расположенное в изолированной местности, на удалении от автомобильных трасс.",
+      ),
+      paragraph(
+        "Здание находилось в неудовлетворительном техническом состоянии: окна заколочены, электроснабжение отсутствует, электронное оборудование не функционировало.",
+      ),
+    ),
+    conclusionDoc: doc(
+      paragraph("Ведущий инспектор: Чхве Сынчоль."),
+      paragraph(
+        "Расследование не может быть продолжено, поскольку вскоре после инцидента в здании произошёл пожар. Сооружение выгорело полностью.",
+      ),
+      paragraph(
+        "Официальное заключение: причиной возгорания признано «нарушение правил пожарной безопасности». На месте найдены предметы, свидетельствующие о незаконной активности.",
+      ),
+    ),
+    bullets: [
+      bullet(paragraph("Во время проведения несанкционированных съёмок группа подверглась нападению неустановленного характера.")),
+      bullet(paragraph("Кан Сонхи — единственная выжившая.")),
+      bullet(
+        paragraph(
+          "Потерпевшая утверждала, что съёмочную группу поглотила темнота, а также сообщала о выраженном дискомфорте в присутствии теней.",
+        ),
+      ),
+    ],
+  },
+];
+
+const partnerCards = [
+  {
+    displayOrder: 10,
+    title: "Исследовательский Центр Пу Сунлин",
+    titleHref: null,
+    introDoc: doc(
+      paragraph(
+        "Академическое исследовательское учреждение, официально зарегистрированное на территории ",
+        text("███████", { classified: true }),
+        ", КНР.",
+      ),
+    ),
+    conclusionDoc: doc(paragraph("Статус сотрудничества: подтверждён.")),
+    bullets: [
+      bullet(
+        paragraph(
+          "Объекты, классифицированные как потенциально опасные аномальные предметы, подлежат передаче в Центр в кратчайшие сроки.",
+        ),
+      ),
+      bullet(
+        paragraph(
+          "Центр сохраняет право истребовать любой объект, признанный не представляющим непосредственной угрозы, при условии, что все необходимые экспертизы были ",
+          text("проведены / зафиксированы / одобрены", { classified: true }),
+          ".",
+        ),
+      ),
+    ],
+  },
+  {
+    displayOrder: 20,
+    title: "Джошуа Хон",
+    titleHref: "/psi",
+    introDoc: doc(paragraph("Независимый консультант. Территория деятельности: Республика Корея.")),
+    conclusionDoc: doc(paragraph("Статус сотрудничества: ограниченный допуск.")),
+    bullets: [
+      bullet(
+        paragraph(
+          "Контакт допускается исключительно в случаях, когда задействованные аномальные объекты или явления представляют непосредственную угрозу гражданскому населению и/или сотрудникам SCU.",
+        ),
+      ),
+      bullet(
+        paragraph(
+          "Обращение допустимо только при условии, что стандартные протоколы SCU признаны недостаточными, а меры локализации — невозможными.",
+        ),
+      ),
+    ],
+  },
+];
+
 const cards = [
   {
     displayOrder: 10,
@@ -205,8 +353,61 @@ const cards = [
 ];
 
 async function main() {
+  await prisma.caseCardBullet.deleteMany();
+  await prisma.caseCard.deleteMany();
+  await prisma.partnerCardBullet.deleteMany();
+  await prisma.partnerCard.deleteMany();
+  await prisma.personnelCard.deleteMany();
   await prisma.psiCardBullet.deleteMany();
   await prisma.psiCard.deleteMany();
+
+  for (const card of personnelCards) {
+    await prisma.personnelCard.create({
+      data: {
+        displayOrder: card.displayOrder,
+        registryId: card.registryId,
+        fullName: card.fullName,
+        role: card.role,
+        status: card.status,
+      },
+    });
+  }
+
+  for (const card of caseCards) {
+    await prisma.caseCard.create({
+      data: {
+        displayOrder: card.displayOrder,
+        title: card.title,
+        meta: card.meta,
+        introDoc: card.introDoc,
+        conclusionDoc: card.conclusionDoc,
+        bullets: {
+          create: card.bullets.map((contentDoc, index) => ({
+            displayOrder: (index + 1) * 10,
+            contentDoc,
+          })),
+        },
+      },
+    });
+  }
+
+  for (const card of partnerCards) {
+    await prisma.partnerCard.create({
+      data: {
+        displayOrder: card.displayOrder,
+        title: card.title,
+        titleHref: card.titleHref ?? null,
+        introDoc: card.introDoc,
+        conclusionDoc: card.conclusionDoc,
+        bullets: {
+          create: card.bullets.map((contentDoc, index) => ({
+            displayOrder: (index + 1) * 10,
+            contentDoc,
+          })),
+        },
+      },
+    });
+  }
 
   for (const card of cards) {
     await prisma.psiCard.create({

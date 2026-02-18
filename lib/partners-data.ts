@@ -1,9 +1,8 @@
-import { Prisma, type PsiCard, type PsiCardBullet } from "@prisma/client";
+import { Prisma, type PartnerCard, type PartnerCardBullet } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
-import type { PsiBulletDTO, PsiCardDTO, PsiCardInput, RichDoc } from "@/types/psi";
-import { createEmptyRichDoc } from "@/types/psi";
-import { normalizePsiName } from "@/lib/psi-name";
+import type { PartnerBulletDTO, PartnerCardDTO, PartnerCardInput } from "@/types/partners";
+import { createEmptyRichDoc, type RichDoc } from "@/types/psi";
 
 function isRichDoc(value: unknown): value is RichDoc {
   if (!value || typeof value !== "object") {
@@ -25,7 +24,7 @@ function toPrismaJson(value: RichDoc): Prisma.InputJsonValue {
   return value as unknown as Prisma.InputJsonValue;
 }
 
-function mapBullet(bullet: PsiCardBullet): PsiBulletDTO {
+function mapBullet(bullet: PartnerCardBullet): PartnerBulletDTO {
   return {
     id: bullet.id,
     displayOrder: bullet.displayOrder,
@@ -33,25 +32,20 @@ function mapBullet(bullet: PsiCardBullet): PsiBulletDTO {
   };
 }
 
-function mapCard(card: PsiCard & { bullets: PsiCardBullet[] }): PsiCardDTO {
+function mapCard(card: PartnerCard & { bullets: PartnerCardBullet[] }): PartnerCardDTO {
   return {
     id: card.id,
     displayOrder: card.displayOrder,
-    name: normalizePsiName(card.name),
-    nameHref: card.nameHref,
-    age: card.age,
-    citizenship: card.citizenship,
-    status: card.status,
-    photoPath: card.photoPath,
-    photoAlt: card.photoAlt,
+    title: card.title,
+    titleHref: card.titleHref,
     introDoc: normalizeRichDoc(card.introDoc),
     conclusionDoc: normalizeRichDoc(card.conclusionDoc),
     bullets: card.bullets.sort((a, b) => a.displayOrder - b.displayOrder || a.id - b.id).map(mapBullet),
   };
 }
 
-export async function listPsiCards(): Promise<PsiCardDTO[]> {
-  const cards = await prisma.psiCard.findMany({
+export async function listPartnerCards(): Promise<PartnerCardDTO[]> {
+  const cards = await prisma.partnerCard.findMany({
     orderBy: [{ displayOrder: "asc" }, { id: "asc" }],
     include: {
       bullets: {
@@ -63,17 +57,12 @@ export async function listPsiCards(): Promise<PsiCardDTO[]> {
   return cards.map(mapCard);
 }
 
-export async function createPsiCard(input: PsiCardInput): Promise<PsiCardDTO> {
-  const created = await prisma.psiCard.create({
+export async function createPartnerCard(input: PartnerCardInput): Promise<PartnerCardDTO> {
+  const created = await prisma.partnerCard.create({
     data: {
       displayOrder: input.displayOrder,
-      name: normalizePsiName(input.name),
-      nameHref: input.nameHref || null,
-      age: input.age ?? null,
-      citizenship: input.citizenship,
-      status: input.status,
-      photoPath: input.photoPath || null,
-      photoAlt: input.photoAlt || null,
+      title: input.title,
+      titleHref: input.titleHref || null,
       introDoc: toPrismaJson(input.introDoc),
       conclusionDoc: toPrismaJson(input.conclusionDoc),
       bullets: {
@@ -93,8 +82,8 @@ export async function createPsiCard(input: PsiCardInput): Promise<PsiCardDTO> {
   return mapCard(created);
 }
 
-export async function updatePsiCard(id: number, input: PsiCardInput): Promise<PsiCardDTO | null> {
-  const exists = await prisma.psiCard.findUnique({
+export async function updatePartnerCard(id: number, input: PartnerCardInput): Promise<PartnerCardDTO | null> {
+  const exists = await prisma.partnerCard.findUnique({
     where: { id },
     select: { id: true },
   });
@@ -102,17 +91,12 @@ export async function updatePsiCard(id: number, input: PsiCardInput): Promise<Ps
     return null;
   }
 
-  const updated = await prisma.psiCard.update({
+  const updated = await prisma.partnerCard.update({
     where: { id },
     data: {
       displayOrder: input.displayOrder,
-      name: normalizePsiName(input.name),
-      nameHref: input.nameHref || null,
-      age: input.age ?? null,
-      citizenship: input.citizenship,
-      status: input.status,
-      photoPath: input.photoPath || null,
-      photoAlt: input.photoAlt || null,
+      title: input.title,
+      titleHref: input.titleHref || null,
       introDoc: toPrismaJson(input.introDoc),
       conclusionDoc: toPrismaJson(input.conclusionDoc),
       bullets: {
@@ -133,8 +117,8 @@ export async function updatePsiCard(id: number, input: PsiCardInput): Promise<Ps
   return mapCard(updated);
 }
 
-export async function deletePsiCard(id: number): Promise<boolean> {
-  const result = await prisma.psiCard.deleteMany({
+export async function deletePartnerCard(id: number): Promise<boolean> {
+  const result = await prisma.partnerCard.deleteMany({
     where: { id },
   });
 

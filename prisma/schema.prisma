@@ -38,3 +38,70 @@ model PsiCardBullet {
   @@index([cardId])
   @@index([displayOrder])
 }
+
+model PersonnelCard {
+  id           Int      @id @default(autoincrement())
+  displayOrder Int      @default(0)
+  registryId   String
+  fullName     String
+  role         String
+  status       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model CaseCard {
+  id            Int              @id @default(autoincrement())
+  displayOrder  Int              @default(0)
+  title         String
+  meta          String
+  introDoc      Json
+  conclusionDoc Json
+  bullets       CaseCardBullet[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@index([displayOrder])
+}
+
+model CaseCardBullet {
+  id           Int      @id @default(autoincrement())
+  cardId       Int
+  displayOrder Int      @default(0)
+  contentDoc   Json
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  card         CaseCard @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@index([cardId])
+  @@index([displayOrder])
+}
+
+model PartnerCard {
+  id            Int                 @id @default(autoincrement())
+  displayOrder  Int                 @default(0)
+  title         String
+  titleHref     String?
+  introDoc      Json
+  conclusionDoc Json
+  bullets       PartnerCardBullet[]
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  @@index([displayOrder])
+}
+
+model PartnerCardBullet {
+  id           Int         @id @default(autoincrement())
+  cardId       Int
+  displayOrder Int         @default(0)
+  contentDoc   Json
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  card         PartnerCard @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@index([cardId])
+  @@index([displayOrder])
+}

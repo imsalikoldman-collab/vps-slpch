@@ -1,60 +1,61 @@
-import Redacted from "@/components/Redacted";
 import RetroLink from "@/components/RetroLink";
-import { partnersPageData } from "@/content/partners";
+import { listPartnerCards } from "@/lib/partners-data";
+import { renderRichDoc } from "@/lib/psi-richtext";
 
-export default function PartnersPage() {
-  const { center, consultant, notice, title } = partnersPageData;
+export const dynamic = "force-dynamic";
 
-  return (
-    <section className="page content">
-      <h2>{title}</h2>
-      <div className="migration-badge">Раздел в режиме миграции. Данные будут перенесены в админ-панель.</div>
+const PAGE_TITLE = "Сотрудничающие организации";
+const PAGE_NOTICE =
+  "Настоящий перечень не является исчерпывающим. Некоторые партнёрские структуры и физические лица намеренно исключены из данной версии документа.";
 
-      <div className="partner-block">
-        <h3>{center.title}</h3>
+export default async function PartnersPage() {
+  try {
+    const cards = await listPartnerCards();
 
-        <p>
-          {center.intro} <Redacted>███████</Redacted>, КНР.
-        </p>
+    return (
+      <section className="page content">
+        <h2>{PAGE_TITLE}</h2>
 
-        <ul>
-          <li>
-            Объекты, классифицированные как <strong>потенциально опасные аномальные предметы</strong>, подлежат передаче в
-            Центр в кратчайшие сроки.
-          </li>
-          <li>
-            Центр сохраняет право истребовать любой объект, признанный <strong>не представляющим непосредственной угрозы</strong>,
-            при условии, что все необходимые экспертизы были <Redacted>проведены / зафиксированы / одобрены</Redacted>.
-          </li>
-        </ul>
-      </div>
+        {cards.map((card) => (
+          <div className="partner-block" key={card.id}>
+            <h3>
+              {card.titleHref ? (
+                <RetroLink className="inline-link" href={card.titleHref}>
+                  {card.title}
+                </RetroLink>
+              ) : (
+                card.title
+              )}
+            </h3>
 
-      <div className="partner-block">
-        <h3>
-          <RetroLink className="inline-link" href="/psi">
-            {consultant.title}
-          </RetroLink>
-        </h3>
+            <div className="rich-block">{renderRichDoc(card.introDoc, "public", `partners-intro-${card.id}`)}</div>
 
-        <p>{consultant.intro}</p>
+            <ul>
+              {card.bullets.map((bullet) => (
+                <li key={bullet.id}>{renderRichDoc(bullet.contentDoc, "public", `partners-bullet-${bullet.id}`)}</li>
+              ))}
+            </ul>
 
-        <ul>
-          <li>
-            Контакт допускается <strong>исключительно</strong> в случаях, когда задействованные аномальные объекты или явления
-            представляют <Redacted>непосредственную угрозу</Redacted> гражданскому населению и/или сотрудникам SCU.
-          </li>
-          <li>
-            Обращение допустимо только при условии, что стандартные протоколы SCU признаны <Redacted>недостаточными</Redacted>, а
-            меры локализации — <Redacted>невозможными</Redacted>.
-          </li>
-        </ul>
-      </div>
+            <div className="rich-block">{renderRichDoc(card.conclusionDoc, "public", `partners-conclusion-${card.id}`)}</div>
+          </div>
+        ))}
 
-      <div className="notice">{notice}</div>
+        <div className="notice">{PAGE_NOTICE}</div>
 
-      <div className="back-link">
-        <RetroLink href="/">← Вернуться в главное меню</RetroLink>
-      </div>
-    </section>
-  );
+        <div className="back-link">
+          <RetroLink href="/">← Вернуться в главное меню</RetroLink>
+        </div>
+      </section>
+    );
+  } catch {
+    return (
+      <section className="page content">
+        <h2>{PAGE_TITLE}</h2>
+        <div className="notice">Модуль базы данных недоступен. Проверьте `DATABASE_URL` и миграции Prisma.</div>
+        <div className="back-link">
+          <RetroLink href="/">← Вернуться в главное меню</RetroLink>
+        </div>
+      </section>
+    );
+  }
 }

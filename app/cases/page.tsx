@@ -1,95 +1,54 @@
-import Redacted from "@/components/Redacted";
 import RetroLink from "@/components/RetroLink";
-import { casesPageData } from "@/content/cases";
+import { listCaseCards } from "@/lib/cases-data";
+import { renderRichDoc } from "@/lib/psi-richtext";
 
-export default function CasesPage() {
-  const { firstCase, notice, secondCase, title } = casesPageData;
+export const dynamic = "force-dynamic";
 
-  return (
-    <section className="page content">
-      <h2>{title}</h2>
-      <div className="migration-badge">Раздел в режиме миграции. Данные будут перенесены в админ-панель.</div>
+const PAGE_TITLE = "Архив материалов дел";
+const PAGE_NOTICE =
+  "Некоторые материалы архива могут быть частично недоступны в зависимости от уровня допуска.";
 
-      <div className="case-block">
-        <h3>{firstCase.title}</h3>
-        <p className="meta">{firstCase.meta}</p>
+export default async function CasesPage() {
+  try {
+    const cards = await listCaseCards();
 
-        <p>
-          {firstCase.opening} <Redacted>[ДАННЫЕ УДАЛЕНЫ]</Redacted>.
-        </p>
+    return (
+      <section className="page content">
+        <h2>{PAGE_TITLE}</h2>
 
-        <ul>
-          <li>
-            {firstCase.finding} <RetroLink href="/psi">Кан Сонхи</RetroLink>.
-          </li>
-          {firstCase.bullets.map((bullet) => (
-            <li key={bullet}>
-              {bullet.includes("недостоверным") ? (
-                <>
-                  Заявление о том, что <strong>художественное изображение манифестировалось</strong>, совершило убийство и
-                  доставило останки потерпевшей, признано <Redacted>недостоверным</Redacted>.
-                </>
-              ) : (
-                bullet
-              )}
-            </li>
-          ))}
-        </ul>
+        {cards.map((card) => (
+          <div className="case-block" key={card.id}>
+            <h3>{card.title}</h3>
+            <p className="meta">{card.meta}</p>
 
-        <p>{firstCase.postText}</p>
+            <div className="rich-block">{renderRichDoc(card.introDoc, "public", `cases-intro-${card.id}`)}</div>
 
-        <ul>
-          {firstCase.archiveBullets.map((bullet) => (
-            <li key={bullet}>{bullet}</li>
-          ))}
-        </ul>
+            <ul>
+              {card.bullets.map((bullet) => (
+                <li key={bullet.id}>{renderRichDoc(bullet.contentDoc, "public", `cases-bullet-${bullet.id}`)}</li>
+              ))}
+            </ul>
 
-        <p className="footer-note">
-          {firstCase.inspector} <Redacted>[ДАННЫЕ УДАЛЕНЫ]</Redacted>
-        </p>
-      </div>
-
-      <div className="case-block">
-        <h3>{secondCase.title}</h3>
-        <p className="meta">{secondCase.meta}</p>
-
-        <p>{secondCase.intro}</p>
-
-        <ul>
-          {secondCase.bullets.map((bullet) => (
-            <li key={bullet}>
-              {bullet.includes("неустановленного характера") ? (
-                <>
-                  Во время проведения несанкционированных съёмок группа подверглась нападению{" "}
-                  <Redacted>неустановленного характера</Redacted>.
-                </>
-              ) : (
-                bullet
-              )}
-            </li>
-          ))}
-        </ul>
-
-        <p>{secondCase.medical}</p>
-
-        <ul>
-          {secondCase.followUpBullets.map((bullet) => (
-            <li key={bullet}>{bullet}</li>
-          ))}
-        </ul>
-
-        <p className="footer-note">{secondCase.inspector}</p>
-
-        {secondCase.closing.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+            <div className="rich-block">{renderRichDoc(card.conclusionDoc, "public", `cases-conclusion-${card.id}`)}</div>
+          </div>
         ))}
-      </div>
 
-      <div className="notice">{notice}</div>
+        <div className="notice">{PAGE_NOTICE}</div>
 
-      <div className="back-link">
-        <RetroLink href="/">← Вернуться на главную страницу</RetroLink>
-      </div>
-    </section>
-  );
+        <div className="back-link">
+          <RetroLink href="/">← Вернуться на главную страницу</RetroLink>
+        </div>
+      </section>
+    );
+  } catch {
+    return (
+      <section className="page content">
+        <h2>{PAGE_TITLE}</h2>
+        <div className="notice">Модуль базы данных недоступен. Проверьте `DATABASE_URL` и миграции Prisma.</div>
+        <div className="back-link">
+          <RetroLink href="/">← Вернуться на главную страницу</RetroLink>
+        </div>
+      </section>
+    );
+  }
 }

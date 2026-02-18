@@ -3,7 +3,13 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import CasesAdminSection from "@/components/admin/CasesAdminSection";
+import PartnersAdminSection from "@/components/admin/PartnersAdminSection";
+import PersonnelAdminSection from "@/components/admin/PersonnelAdminSection";
 import RichTextEditor from "@/components/admin/RichTextEditor";
+import type { CaseCardDTO } from "@/types/cases";
+import type { PartnerCardDTO } from "@/types/partners";
+import type { PersonnelCardDTO } from "@/types/personnel";
 import { createEmptyRichDoc, type PsiCardDTO, type PsiCardInput, type RichDoc } from "@/types/psi";
 
 type AdminSection = "psi" | "personnel" | "cases" | "partners";
@@ -31,7 +37,10 @@ interface EditableCard {
 }
 
 interface PsiAdminPanelProps {
-  initialCards: PsiCardDTO[];
+  initialPsiCards: PsiCardDTO[];
+  initialPersonnelCards: PersonnelCardDTO[];
+  initialCaseCards: CaseCardDTO[];
+  initialPartnerCards: PartnerCardDTO[];
 }
 
 function toEditable(card: PsiCardDTO): EditableCard {
@@ -110,14 +119,23 @@ function toPhotoUrl(photoPath: string): string | null {
   return null;
 }
 
-export default function PsiAdminPanel({ initialCards }: PsiAdminPanelProps) {
+function sortPsiCards(cards: EditableCard[]): EditableCard[] {
+  return cards.sort((a, b) => a.displayOrder - b.displayOrder || (a.id ?? 0) - (b.id ?? 0));
+}
+
+export default function PsiAdminPanel({
+  initialPsiCards,
+  initialPersonnelCards,
+  initialCaseCards,
+  initialPartnerCards,
+}: PsiAdminPanelProps) {
   const router = useRouter();
 
   const [section, setSection] = useState<AdminSection>("psi");
-  const [cards, setCards] = useState<EditableCard[]>(() =>
-    initialCards.map(toEditable).sort((a, b) => a.displayOrder - b.displayOrder),
+  const [cards, setCards] = useState<EditableCard[]>(() => sortPsiCards(initialPsiCards.map(toEditable)));
+  const [selectedLocalId, setSelectedLocalId] = useState<string | null>(() =>
+    initialPsiCards[0] ? `card-${initialPsiCards[0].id}` : null,
   );
-  const [selectedLocalId, setSelectedLocalId] = useState<string | null>(() => (initialCards[0] ? `card-${initialCards[0].id}` : null));
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -145,7 +163,7 @@ export default function PsiAdminPanel({ initialCards }: PsiAdminPanelProps) {
   const handleCreateCard = () => {
     const nextOrder = cards.length ? Math.max(...cards.map((card) => card.displayOrder)) + 10 : 10;
     const draft = createDraftCard(nextOrder);
-    setCards((prev) => [...prev, draft].sort((a, b) => a.displayOrder - b.displayOrder));
+    setCards((prev) => sortPsiCards([...prev, draft]));
     setSelectedLocalId(draft.localId);
     setMessage("Создана новая черновая карточка.");
     setError(null);
@@ -161,7 +179,7 @@ export default function PsiAdminPanel({ initialCards }: PsiAdminPanelProps) {
         throw new Error("Не удалось загрузить карточки.");
       }
       const data = (await response.json()) as { cards: PsiCardDTO[] };
-      const mapped = data.cards.map(toEditable).sort((a, b) => a.displayOrder - b.displayOrder);
+      const mapped = sortPsiCards(data.cards.map(toEditable));
       setCards(mapped);
       setSelectedLocalId(mapped[0]?.localId || null);
     } catch (reloadError) {
@@ -210,7 +228,7 @@ export default function PsiAdminPanel({ initialCards }: PsiAdminPanelProps) {
         const next = isNew
           ? [...prev.filter((card) => card.localId !== selectedCard.localId), saved]
           : prev.map((card) => (card.localId === selectedCard.localId ? saved : card));
-        return next.sort((a, b) => a.displayOrder - b.displayOrder);
+        return sortPsiCards(next);
       });
       setSelectedLocalId(saved.localId);
       setMessage("Карточка сохранена.");
@@ -308,9 +326,6 @@ export default function PsiAdminPanel({ initialCards }: PsiAdminPanelProps) {
       </div>
 
       <div className="admin-section-tabs">
-        <button className={section === "psi" ? "active" : ""} onClick={() => setSection("psi")} type="button">
-          Лица особого интереса
-        </button>
         <button className={section === "personnel" ? "active" : ""} onClick={() => setSection("personnel")} type="button">
           Кадровый реестр
         </button>
@@ -320,11 +335,15 @@ export default function PsiAdminPanel({ initialCards }: PsiAdminPanelProps) {
         <button className={section === "partners" ? "active" : ""} onClick={() => setSection("partners")} type="button">
           Сотрудничающие организации
         </button>
+        <button className={section === "psi" ? "active" : ""} onClick={() => setSection("psi")} type="button">
+          Лица особого интереса
+        </button>
       </div>
 
-      {section !== "psi" ? (
-        <div className="admin-module-placeholder">Модуль в миграции</div>
-      ) : (
+      {section === "personnel" ? <PersonnelAdminSection initialCards={initialPersonnelCards} /> : null}
+      {section === "cases" ? <CasesAdminSection initialCards={initialCaseCards} /> : null}
+      {section === "partners" ? <PartnersAdminSection initialCards={initialPartnerCards} /> : null}
+      {section === "psi" ? (
         <div className="admin-psi-layout">
           <aside className="admin-psi-list">
             <div className="admin-psi-list-head">
@@ -538,40 +557,6 @@ export default function PsiAdminPanel({ initialCards }: PsiAdminPanelProps) {
                         <button
                           type="button"
                           onClick={() =>
-                            setCardState((card) => {
-                              if (index === 0) {
-                                return card;
-                              }
-                              const nextBullets = [...card.bullets];
-                              const current = nextBullets[index];
-                              nextBullets[index] = nextBullets[index - 1];
-                              nextBullets[index - 1] = current;
-                              return { ...card, bullets: nextBullets };
-                            })
-                          }
-                        >
-                          ↑
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setCardState((card) => {
-                              if (index >= card.bullets.length - 1) {
-                                return card;
-                              }
-                              const nextBullets = [...card.bullets];
-                              const current = nextBullets[index];
-                              nextBullets[index] = nextBullets[index + 1];
-                              nextBullets[index + 1] = current;
-                              return { ...card, bullets: nextBullets };
-                            })
-                          }
-                        >
-                          ↓
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() =>
                             setCardState((card) => ({
                               ...card,
                               bullets: card.bullets.filter((_, itemIndex) => itemIndex !== index),
@@ -624,10 +609,10 @@ export default function PsiAdminPanel({ initialCards }: PsiAdminPanelProps) {
             )}
           </div>
         </div>
-      )}
+      ) : null}
 
-      {error ? <div className="admin-status error">{error}</div> : null}
-      {message ? <div className="admin-status ok">{message}</div> : null}
+      {section === "psi" && error ? <div className="admin-status error">{error}</div> : null}
+      {section === "psi" && message ? <div className="admin-status ok">{message}</div> : null}
     </section>
   );
 }
