@@ -21,6 +21,13 @@ export default function RouteFxOverlay() {
   const [lineIndex, setLineIndex] = useState(0);
 
   useEffect(() => {
+    if (!preferences.fxEnabled) {
+      setBootActive(false);
+      setProgress(100);
+      setLineIndex(0);
+      return;
+    }
+
     setBootActive(true);
     setProgress(6);
     setLineIndex(0);
@@ -43,9 +50,9 @@ export default function RouteFxOverlay() {
       window.clearInterval(tickInterval);
       window.clearTimeout(timeout);
     };
-  }, [pathname, playBoot, preferences.safeMode]);
+  }, [pathname, playBoot, preferences.fxEnabled, preferences.safeMode]);
 
-  const active = bootActive || transitionActive;
+  const active = preferences.fxEnabled && (bootActive || transitionActive);
 
   return (
     <div className={`route-overlay ${active ? "active" : ""} ${preferences.safeMode ? "safe" : "max"}`} aria-live="polite">

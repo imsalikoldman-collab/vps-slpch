@@ -19,9 +19,10 @@ interface RetroShellProps {
 export default function RetroShell({ children }: RetroShellProps) {
   const { preferences } = useFx();
   const [loginOpen, setLoginOpen] = useState(false);
+  const fxClass = preferences.fxEnabled ? (preferences.safeMode ? "fx-safe" : "fx-max") : "fx-off";
 
   return (
-    <div className={`retro-root ${preferences.safeMode ? "fx-safe" : "fx-max"}`}>
+    <div className={`retro-root ${fxClass}`}>
       <div className="monitor-stage" aria-hidden />
 
       <div className="retro-window">
@@ -32,9 +33,9 @@ export default function RetroShell({ children }: RetroShellProps) {
         <main className="retro-content">{children}</main>
         <StatusFooter />
 
-        <div className="crt-layer scanlines" aria-hidden />
-        <div className="crt-layer noise" aria-hidden />
-        <div className="crt-layer vignette" aria-hidden />
+        {preferences.fxEnabled ? <div className="crt-layer scanlines" aria-hidden /> : null}
+        {preferences.fxEnabled ? <div className="crt-layer noise" aria-hidden /> : null}
+        {preferences.fxEnabled ? <div className="crt-layer vignette" aria-hidden /> : null}
       </div>
 
       <RouteFxOverlay />

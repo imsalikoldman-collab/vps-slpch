@@ -15,6 +15,7 @@ import { FX_STORAGE_KEY } from "@/constants/storage";
 import type { FxContextValue, FxPreferences } from "@/types/fx";
 
 const DEFAULT_PREFERENCES: FxPreferences = {
+  fxEnabled: true,
   soundEnabled: false,
   safeMode: false,
   fxLevel: "max",
@@ -45,13 +46,19 @@ export function FxProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      const parsed = JSON.parse(stored) as FxPreferences;
+      const parsed = JSON.parse(stored) as Partial<FxPreferences>;
+      const fxEnabled = typeof parsed.fxEnabled === "boolean" ? parsed.fxEnabled : true;
       if (
         typeof parsed.soundEnabled === "boolean" &&
         typeof parsed.safeMode === "boolean" &&
         (parsed.fxLevel === "max" || parsed.fxLevel === "safe")
       ) {
-        setPreferences(parsed);
+        setPreferences({
+          fxEnabled,
+          soundEnabled: parsed.soundEnabled,
+          safeMode: parsed.safeMode,
+          fxLevel: parsed.fxLevel,
+        });
       }
     } catch {
       window.localStorage.removeItem(FX_STORAGE_KEY);
@@ -94,9 +101,20 @@ export function FxProvider({ children }: { children: ReactNode }) {
     return audioRef.current;
   }, []);
 
+  const clearTransitionState = useCallback(() => {
+    if (transitionTimeoutRef.current !== null) {
+      window.clearTimeout(transitionTimeoutRef.current);
+      transitionTimeoutRef.current = null;
+    }
+
+    setTransitionActive(false);
+    transitionResolverRef.current?.();
+    transitionResolverRef.current = null;
+  }, []);
+
   const playTone = useCallback(
     async (frequency: number, durationMs: number, waveform: OscillatorType, baseGain: number) => {
-      if (!preferences.soundEnabled) {
+      if (!preferences.fxEnabled || !preferences.soundEnabled) {
         return;
       }
 
@@ -123,12 +141,12 @@ export function FxProvider({ children }: { children: ReactNode }) {
       osc.start(now);
       osc.stop(now + durationMs / 1000 + 0.02);
     },
-    [ensureAudioContext, preferences.safeMode, preferences.soundEnabled],
+    [ensureAudioContext, preferences.fxEnabled, preferences.safeMode, preferences.soundEnabled],
   );
 
   const playNoiseBurst = useCallback(
     async (durationMs: number, baseGain: number) => {
-      if (!preferences.soundEnabled) {
+      if (!preferences.fxEnabled || !preferences.soundEnabled) {
         return;
       }
 
@@ -162,8 +180,19 @@ export function FxProvider({ children }: { children: ReactNode }) {
       source.start();
       source.stop(audio.currentTime + durationMs / 1000);
     },
-    [ensureAudioContext, preferences.safeMode, preferences.soundEnabled],
+    [ensureAudioContext, preferences.fxEnabled, preferences.safeMode, preferences.soundEnabled],
   );
+
+  const toggleFxEnabled = useCallback(() => {
+    setPreferences((prev) => ({
+      ...prev,
+      fxEnabled: !prev.fxEnabled,
+    }));
+
+    if (preferences.fxEnabled) {
+      clearTransitionState();
+    }
+  }, [clearTransitionState, preferences.fxEnabled]);
 
   const toggleSafeMode = useCallback(() => {
     setPreferences((prev) => {
@@ -184,7 +213,7 @@ export function FxProvider({ children }: { children: ReactNode }) {
       soundEnabled: nextEnabled,
     }));
 
-    if (!nextEnabled) {
+    if (!nextEnabled || !preferences.fxEnabled) {
       return;
     }
 
@@ -209,20 +238,32 @@ export function FxProvider({ children }: { children: ReactNode }) {
       osc.start(now);
       osc.stop(now + 0.14);
     });
-  }, [ensureAudioContext, preferences.soundEnabled]);
+  }, [ensureAudioContext, preferences.fxEnabled, preferences.soundEnabled]);
 
   const playClick = useCallback(() => {
+    if (!preferences.fxEnabled) {
+      return;
+    }
     void playTone(980, 90, "square", 0.04);
-  }, [playTone]);
+  }, [playTone, preferences.fxEnabled]);
 
   const playBoot = useCallback(() => {
+    if (!preferences.fxEnabled) {
+      return;
+    }
+
     void playNoiseBurst(180, 0.07);
     window.setTimeout(() => {
       void playTone(240, 120, "sawtooth", 0.035);
     }, preferences.safeMode ? 55 : 25);
-  }, [playNoiseBurst, playTone, preferences.safeMode]);
+  }, [playNoiseBurst, playTone, preferences.fxEnabled, preferences.safeMode]);
 
   const playTransition = useCallback(async () => {
+    if (!preferences.fxEnabled) {
+      clearTransitionState();
+      return;
+    }
+
     if (transitionTimeoutRef.current !== null) {
       return;
     }
@@ -240,12 +281,13 @@ export function FxProvider({ children }: { children: ReactNode }) {
         transitionResolverRef.current = null;
       }, duration);
     });
-  }, [playNoiseBurst, preferences.safeMode]);
+  }, [clearTransitionState, playNoiseBurst, preferences.fxEnabled, preferences.safeMode]);
 
   const value = useMemo<FxContextValue>(
     () => ({
       preferences,
       transitionActive,
+      toggleFxEnabled,
       toggleSound,
       toggleSafeMode,
       playTransition,
@@ -257,6 +299,7 @@ export function FxProvider({ children }: { children: ReactNode }) {
       playClick,
       playTransition,
       preferences,
+      toggleFxEnabled,
       toggleSafeMode,
       toggleSound,
       transitionActive,

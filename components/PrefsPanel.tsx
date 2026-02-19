@@ -3,7 +3,14 @@
 import { useFx } from "@/context/FxContext";
 
 export default function PrefsPanel() {
-  const { preferences, toggleSound, toggleSafeMode, playClick } = useFx();
+  const { preferences, toggleFxEnabled, toggleSound, toggleSafeMode, playClick } = useFx();
+
+  const fxLevelLabel = preferences.fxEnabled ? preferences.fxLevel.toUpperCase() : "OFF";
+
+  const handleFxToggle = () => {
+    playClick();
+    toggleFxEnabled();
+  };
 
   const handleSoundToggle = () => {
     toggleSound();
@@ -16,6 +23,10 @@ export default function PrefsPanel() {
 
   return (
     <div className="prefs-panel">
+      <button className={`pref-btn ${preferences.fxEnabled ? "active" : ""}`} type="button" onClick={handleFxToggle}>
+        FX {preferences.fxEnabled ? "ON" : "OFF"}
+      </button>
+
       <button className="pref-btn" type="button" onClick={handleSoundToggle}>
         {preferences.soundEnabled ? "SOUND OFF" : "SOUND ON"}
       </button>
@@ -24,7 +35,7 @@ export default function PrefsPanel() {
         SAFE MODE {preferences.safeMode ? "ON" : "OFF"}
       </button>
 
-      <span className="fx-level">FX: {preferences.fxLevel.toUpperCase()}</span>
+      <span className="fx-level">FX: {fxLevelLabel}</span>
     </div>
   );
 }

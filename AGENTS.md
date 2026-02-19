@@ -77,3 +77,8 @@ npm run build
 
 - Описание реализованных эффектов отображения контента:
   `docs/effects-reference.md`
+
+## 11) Базовый дизайн
+
+- Базовый внешний стиль (source of truth) зафиксирован в:
+  `docs/design-baseline.md`
