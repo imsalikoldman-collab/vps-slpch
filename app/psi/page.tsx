@@ -1,4 +1,5 @@
 import RetroLink from "@/components/RetroLink";
+import { psiPageData } from "@/content/psi";
 import { listPsiCards } from "@/lib/psi-data";
 import { renderRichDoc } from "@/lib/psi-richtext";
 
@@ -89,7 +90,31 @@ export default async function PsiPage() {
     return (
       <section className="page content">
         <h2>{PAGE_TITLE}</h2>
-        <div className="notice">Модуль базы данных недоступен. Проверьте `DATABASE_URL` и миграции Prisma.</div>
+
+        {psiPageData.entries.map((entry, index) => (
+          <div className="psi-block" key={`legacy-psi-${index}`}>
+            <h3>
+              {entry.nameHref ? (
+                <RetroLink className="inline-link" href={entry.nameHref}>
+                  {entry.name}
+                </RetroLink>
+              ) : (
+                entry.name
+              )}
+            </h3>
+            <p className="meta">{entry.meta}</p>
+            <p>{entry.intro}</p>
+            <ul>
+              {entry.bullets.map((bullet, bulletIndex) => (
+                <li key={`legacy-psi-${index}-bullet-${bulletIndex}`}>{bullet}</li>
+              ))}
+            </ul>
+            <p className="conclusion">{entry.conclusion}</p>
+          </div>
+        ))}
+
+        <div className="notice">{psiPageData.notice}</div>
+
         <div className="back-link">
           <RetroLink href="/">← Вернуться в главное меню</RetroLink>
         </div>

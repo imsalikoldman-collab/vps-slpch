@@ -1,4 +1,5 @@
 import RetroLink from "@/components/RetroLink";
+import { casesPageData } from "@/content/cases";
 import { listCaseCards } from "@/lib/cases-data";
 import { renderRichDoc } from "@/lib/psi-richtext";
 
@@ -44,7 +45,59 @@ export default async function CasesPage() {
     return (
       <section className="page content">
         <h2>{PAGE_TITLE}</h2>
-        <div className="notice">Модуль базы данных недоступен. Проверьте `DATABASE_URL` и миграции Prisma.</div>
+
+        <div className="case-block">
+          <h3>{casesPageData.firstCase.title}</h3>
+          <p className="meta">{casesPageData.firstCase.meta}</p>
+          <p>
+            {casesPageData.firstCase.opening}. {casesPageData.firstCase.finding}.
+          </p>
+
+          <ul>
+            {casesPageData.firstCase.bullets.map((bullet, index) => (
+              <li key={`legacy-case-1-bullet-${index}`}>{bullet}</li>
+            ))}
+          </ul>
+
+          <p>{casesPageData.firstCase.postText}</p>
+
+          <ul>
+            {casesPageData.firstCase.archiveBullets.map((bullet, index) => (
+              <li key={`legacy-case-1-archive-${index}`}>{bullet}</li>
+            ))}
+          </ul>
+
+          <p>{casesPageData.firstCase.inspector}</p>
+        </div>
+
+        <div className="case-block">
+          <h3>{casesPageData.secondCase.title}</h3>
+          <p className="meta">{casesPageData.secondCase.meta}</p>
+          <p>{casesPageData.secondCase.intro}</p>
+
+          <ul>
+            {casesPageData.secondCase.bullets.map((bullet, index) => (
+              <li key={`legacy-case-2-bullet-${index}`}>{bullet}</li>
+            ))}
+          </ul>
+
+          <p>{casesPageData.secondCase.medical}</p>
+
+          <ul>
+            {casesPageData.secondCase.followUpBullets.map((bullet, index) => (
+              <li key={`legacy-case-2-followup-${index}`}>{bullet}</li>
+            ))}
+          </ul>
+
+          <p>{casesPageData.secondCase.inspector}</p>
+
+          {casesPageData.secondCase.closing.map((closingEntry, index) => (
+            <p key={`legacy-case-2-closing-${index}`}>{closingEntry}</p>
+          ))}
+        </div>
+
+        <div className="notice">{casesPageData.notice}</div>
+
         <div className="back-link">
           <RetroLink href="/">← Вернуться на главную страницу</RetroLink>
         </div>

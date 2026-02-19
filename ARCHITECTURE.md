@@ -133,3 +133,57 @@
 3. при необходимости обновить `types/site.ts`
 4. проверить переходы через `RetroLink`
 5. прогнать `npm run lint` и `npm run build`
+
+## 11) Установка PostgreSQL на локальной Windows машине (portable, через `wget`)
+
+Текущий рабочий локальный вариант в проекте: portable PostgreSQL 16 в каталоге пользователя.
+
+Одноразовая установка:
+
+```powershell
+$PG_BASE="$env:USERPROFILE\postgresql16-local"
+New-Item -ItemType Directory -Force -Path $PG_BASE | Out-Null
+Set-Location $PG_BASE
+
+wget "https://get.enterprisedb.com/postgresql/postgresql-16.12-1-windows-x64-binaries.zip" -OutFile "postgresql-16.12-1-windows-x64-binaries.zip"
+Expand-Archive ".\postgresql-16.12-1-windows-x64-binaries.zip" -DestinationPath ".\pgsql-16.12" -Force
+
+$PGROOT="$PG_BASE\pgsql-16.12\pgsql"
+$PGDATA="$PG_BASE\data"
+New-Item -ItemType Directory -Force -Path $PGDATA | Out-Null
+
+& "$PGROOT\bin\initdb.exe" -D $PGDATA -U postgres -A scram-sha-256 -W
+& "$PGROOT\bin\pg_ctl.exe" -D $PGDATA -l "$PGDATA\postgres-runtime.log" start
+& "$PGROOT\bin\createdb.exe" -h localhost -p 5432 -U postgres slpch
+```
+
+Проверка:
+
+```powershell
+Test-NetConnection -ComputerName localhost -Port 5432
+```
+
+## 12) Порядок запуска приложения на локальной Windows машине
+
+```powershell
+# 1) поднять PostgreSQL portable
+$PGROOT="$env:USERPROFILE\postgresql16-local\pgsql-16.12\pgsql"
+$PGDATA="$env:USERPROFILE\postgresql16-local\data"
+& "$PGROOT\bin\pg_ctl.exe" -D "$PGDATA" -l "$PGDATA\postgres-runtime.log" start
+```
+
+```bash
+# 2) в корне проекта
+npm install
+npm run prisma:generate
+npm run prisma:migrate
+npm run dev
+```
+
+Остановка БД:
+
+```powershell
+$PGROOT="$env:USERPROFILE\postgresql16-local\pgsql-16.12\pgsql"
+$PGDATA="$env:USERPROFILE\postgresql16-local\data"
+& "$PGROOT\bin\pg_ctl.exe" -D "$PGDATA" stop
+```

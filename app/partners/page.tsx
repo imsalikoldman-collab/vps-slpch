@@ -1,4 +1,5 @@
 import RetroLink from "@/components/RetroLink";
+import { partnersPageData } from "@/content/partners";
 import { listPartnerCards } from "@/lib/partners-data";
 import { renderRichDoc } from "@/lib/psi-richtext";
 
@@ -51,7 +52,22 @@ export default async function PartnersPage() {
     return (
       <section className="page content">
         <h2>{PAGE_TITLE}</h2>
-        <div className="notice">Модуль базы данных недоступен. Проверьте `DATABASE_URL` и миграции Prisma.</div>
+
+        {[partnersPageData.center, partnersPageData.consultant].map((card, index) => (
+          <div className="partner-block" key={`legacy-partner-${index}`}>
+            <h3>{card.title}</h3>
+            <p>{card.intro}</p>
+
+            <ul>
+              {card.bullets.map((bullet, bulletIndex) => (
+                <li key={`legacy-partner-${index}-bullet-${bulletIndex}`}>{bullet}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <div className="notice">{partnersPageData.notice}</div>
+
         <div className="back-link">
           <RetroLink href="/">← Вернуться в главное меню</RetroLink>
         </div>

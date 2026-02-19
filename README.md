@@ -16,16 +16,57 @@
 Требования:
 - Node.js 20+
 - npm 10+
+- PostgreSQL (должен быть запущен до старта Next.js)
 
-Установка и запуск:
+## Порядок запуска `dev` на локальной Windows машине
+
+1. Поднять PostgreSQL.
+
+Вариант A (если установлен как Windows service):
+
+```powershell
+Get-Service *postgres*
+Start-Service <postgres_service_name>
+```
+
+Вариант B (portable-установка, как в этом проекте):
+
+```powershell
+$PGROOT="$env:USERPROFILE\postgresql16-local\pgsql-16.12\pgsql"
+$PGDATA="$env:USERPROFILE\postgresql16-local\data"
+& "$PGROOT\bin\pg_ctl.exe" -D "$PGDATA" -l "$PGDATA\postgres-runtime.log" start
+```
+
+2. Проверить порт БД:
+
+```powershell
+Test-NetConnection -ComputerName localhost -Port 5432
+```
+
+Ожидается `TcpTestSucceeded: True`.
+
+3. Запустить Prisma и dev:
 
 ```bash
 npm install
 npm run prisma:generate
+npm run prisma:migrate
 npm run dev
 ```
 
 Приложение поднимется на `http://localhost:3000`.
+
+4. Остановка (при необходимости):
+
+```powershell
+# dev (пример: порт 3000)
+Stop-Process -Id (Get-NetTCPConnection -LocalPort 3000 -State Listen).OwningProcess
+
+# PostgreSQL portable
+$PGROOT="$env:USERPROFILE\postgresql16-local\pgsql-16.12\pgsql"
+$PGDATA="$env:USERPROFILE\postgresql16-local\data"
+& "$PGROOT\bin\pg_ctl.exe" -D "$PGDATA" stop
+```
 
 Перед запуском заполните `.env` на основе `.env.example`.
 
