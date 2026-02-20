@@ -11,3 +11,39 @@
  ✓ Ready in 3.3s
  ○ Compiling / ...
  ✓ Compiled / in 1807ms (558 modules)
+ GET / 200 in 3113ms
+ ○ Compiling /api/media/radio/manifest ...
+ ✓ Compiled /personnel in 12.5s (586 modules)
+ GET /api/media/radio/manifest 200 in 16180ms
+ ○ Compiling /api/media/radio/[file] ...
+ GET /personnel 200 in 12951ms
+ ✓ Compiled /api/media/radio/[file] in 2.2s (588 modules)
+ GET /api/media/radio/phrase_01_3.84s-4.53s.mp3 200 in 9643ms
+ GET /api/media/radio/radio_hiss_loop.mp3 200 in 366ms
+ GET /api/media/radio/phrase_02_4.78s-5.99s.mp3 200 in 109ms
+ GET / 200 in 626ms
+ GET /api/media/radio/phrase_03_6.61s-8.44s.mp3 200 in 269ms
+ GET /api/media/radio/phrase_04_9.16s-16.98s.mp3 200 in 408ms
+ ○ Compiling /cases ...
+ ✓ Compiled /cases in 3.4s (595 modules)
+ GET /cases 200 in 7617ms
+ GET /api/media/radio/phrase_05_17.40s-19.33s.mp3 200 in 410ms
+ GET / 200 in 289ms
+ GET /api/media/radio/phrase_06_19.63s-21.54s.mp3 200 in 188ms
+ ○ Compiling /psi ...
+ ✓ Compiled /psi in 2.7s (600 modules)
+ GET /api/media/radio/phrase_07_21.78s-24.54s.mp3 200 in 248ms
+ GET /psi 200 in 5808ms
+ ○ Compiling /api/media/psi/[file] ...
+ ✓ Compiled /api/media/psi/[file] in 4.9s (602 modules)
+ GET /api/media/radio/phrase_08_24.77s-25.55s.mp3 200 in 1149ms
+ GET /api/media/psi/1fcb5842-abd7-4ad8-aa5f-0fcf37cdaf4c.jpg 200 in 12289ms
+ GET /api/media/psi/3fc58eba-7c36-4ba1-97d5-bd078ae491bf.jpg 200 in 12299ms
+ GET /api/media/psi/311fcf66-0732-4b24-8a86-908260d58f91.jpg 200 in 7490ms
+ GET /api/media/psi/606d0817-185c-4738-bc2a-672cfa05110d.jpg 200 in 12339ms
+ GET /api/media/psi/91ad17fe-e71c-44bb-a07a-245db5e7267a.png 200 in 3282ms
+ GET /api/media/psi/c5c96177-5ca0-435f-97cc-6d2a8239e4fa.png 200 in 4771ms
+ GET /api/media/radio/phrase_09_25.98s-32.19s.mp3 200 in 279ms
+ GET /api/media/radio/phrase_10_32.67s-37.13s.mp3 200 in 301ms
+ GET /api/media/radio/phrase_11_37.37s-48.31s.mp3 200 in 73ms
+ GET /api/media/radio/phrase_12_48.70s-60.26s.mp3 200 in 46ms
