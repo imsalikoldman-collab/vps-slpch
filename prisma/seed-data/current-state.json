@@ -1,0 +1,1126 @@
+{
+  "personnelCards": [
+    {
+      "displayOrder": 10,
+      "registryId": "SCU-███",
+      "fullName": "Чхве Сынчоль",
+      "role": "Старший инспектор",
+      "status": "Активен"
+    },
+    {
+      "displayOrder": 20,
+      "registryId": "SCU-███",
+      "fullName": "Ли Джихун",
+      "role": "Оперативный сотрудник",
+      "status": "Активен"
+    },
+    {
+      "displayOrder": 30,
+      "registryId": "SCU-███",
+      "fullName": "[ДАННЫЕ УДАЛЕНЫ]",
+      "role": "Консультант",
+      "status": "Статус засекречен"
+    },
+    {
+      "displayOrder": 40,
+      "registryId": "SCU-███",
+      "fullName": "Ким Мингю",
+      "role": "Оперативный сотрудник",
+      "status": "Активен"
+    }
+  ],
+  "caseCards": [
+    {
+      "displayOrder": 10,
+      "title": "▣ [202█-11-04] Дело #SCU-19-███",
+      "meta": "Статус дела: закрыто | Категория: убийство | Локация: г. Сеул, р-н ██████",
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Дело об убийстве гражданки ",
+                "type": "text"
+              },
+              {
+                "text": "[ДАННЫЕ УДАЛЕНЫ]",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "classified"
+                  }
+                ]
+              },
+              {
+                "text": ". Голова потерпевшей была обнаружена в жилом помещении Кан Сонхи.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Дело закрыто. Убийца не установлен.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Скетчбук, упомянутый в показаниях, был изъят в качестве вещественного доказательства и передан на хранение в Исследовательский Центр Пу Сунлин.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Ведущий инспектор: ",
+                "type": "text"
+              },
+              {
+                "text": "[ДАННЫЕ УДАЛЕНЫ]",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "classified"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Кан Сонхи проходила по делу в качестве подозреваемой, однако за недостаточностью улик была оправдана.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Психиатрическое заключение указывает, что на момент дачи показаний Кан Сонхи находилась в состоянии острого шока и глубокой психологической травмы.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 30,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Заявление о том, что художественное изображение манифестировалось, совершило убийство и доставило останки потерпевшей, признано ",
+                    "type": "text"
+                  },
+                  {
+                    "text": "недостоверным",
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "classified"
+                      }
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "displayOrder": 20,
+      "title": "▣ [202█-10-29] Дело #SCU-19-███",
+      "meta": "Статус дела: закрыто | Категория: групповой инцидент | Локация: за пределами г. Сеул",
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Заброшенное культовое сооружение малого размера, расположенное в изолированной местности, на удалении от автомобильных трасс.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Здание находилось в неудовлетворительном техническом состоянии: окна заколочены, электроснабжение отсутствует, электронное оборудование не функционировало.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Ведущий инспектор: Чхве Сынчоль.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Расследование не может быть продолжено, поскольку вскоре после инцидента в здании произошёл пожар. Сооружение выгорело полностью.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Официальное заключение: причиной возгорания признано «нарушение правил пожарной безопасности». На месте найдены предметы, свидетельствующие о незаконной активности.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Во время проведения несанкционированных съёмок группа подверглась нападению неустановленного характера.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Кан Сонхи — единственная выжившая.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 30,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Потерпевшая утверждала, что съёмочную группу поглотила темнота, а также сообщала о выраженном дискомфорте в присутствии теней.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "partnerCards": [
+    {
+      "displayOrder": 10,
+      "title": "Исследовательский Центр Пу Сунлин",
+      "titleHref": null,
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Академическое исследовательское учреждение, официально зарегистрированное на территории ",
+                "type": "text"
+              },
+              {
+                "text": "███████",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "classified"
+                  }
+                ]
+              },
+              {
+                "text": ", КНР.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Статус сотрудничества: подтверждён.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Объекты, классифицированные как потенциально опасные аномальные предметы, подлежат передаче в Центр в кратчайшие сроки.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Центр сохраняет право истребовать любой объект, признанный не представляющим непосредственной угрозы, при условии, что все необходимые экспертизы были ",
+                    "type": "text"
+                  },
+                  {
+                    "text": "проведены / зафиксированы / одобрены",
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "classified"
+                      }
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "displayOrder": 20,
+      "title": "Джошуа Хон",
+      "titleHref": "/psi",
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Независимый консультант. Территория деятельности: Республика Корея.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Статус сотрудничества: ограниченный допуск.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Контакт допускается исключительно в случаях, когда задействованные аномальные объекты или явления представляют непосредственную угрозу гражданскому населению и/или сотрудникам SCU.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Обращение допустимо только при условии, что стандартные протоколы SCU признаны недостаточными, а меры локализации — невозможными.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "psiCards": [
+    {
+      "displayOrder": 10,
+      "name": "Кан Сонхи",
+      "nameHref": "/cases",
+      "age": 28,
+      "citizenship": "Республика Корея",
+      "status": "под наблюдением",
+      "photoPath": "psi/1fcb5842-abd7-4ad8-aa5f-0fcf37cdaf4c.jpg",
+      "photoAlt": "Кан Сонхи",
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Частное лицо. В настоящее время осуществляет деятельность, связанную с документированием и публичным освещением ",
+                "type": "text"
+              },
+              {
+                "text": "аномальных / необъяснимых",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "classified"
+                  }
+                ]
+              },
+              {
+                "text": " явлений (онлайн-платформа).",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Заключение: продолжать наблюдение.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "В [202",
+                    "type": "text"
+                  },
+                  {
+                    "text": "█",
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "classified"
+                      }
+                    ]
+                  },
+                  {
+                    "text": "-11-04] проходила по делу #SCU-19-",
+                    "type": "text"
+                  },
+                  {
+                    "text": "███",
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "classified"
+                      }
+                    ]
+                  },
+                  {
+                    "text": " в качестве подозреваемой. Ввиду отсутствия доказательной базы была оправдана.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "В [202",
+                    "type": "text"
+                  },
+                  {
+                    "text": "█",
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "classified"
+                      }
+                    ]
+                  },
+                  {
+                    "text": "-10-29] проходила как потерпевшая в деле #SCU-19-",
+                    "type": "text"
+                  },
+                  {
+                    "text": "███",
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "classified"
+                      }
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 30,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Имеет неоднократный подтверждённый контакт с манифестациями.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "displayOrder": 20,
+      "name": "Сюй Минхао",
+      "nameHref": null,
+      "age": 28,
+      "citizenship": "КНР",
+      "status": "под наблюдением",
+      "photoPath": "psi/606d0817-185c-4738-bc2a-672cfa05110d.jpg",
+      "photoAlt": "Сюй Минхао",
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Сотрудник Исследовательского Центра Пу Сунлин, ассистент Главного Хранителя коллекции ",
+                "type": "text"
+              },
+              {
+                "text": "аномальных артефактов",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "classified"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Заключение: продолжать наблюдение.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Предположительно вступил в контакт с Кан Сонхи после инцидента #SCU-19-",
+                    "type": "text"
+                  },
+                  {
+                    "text": "███",
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "classified"
+                      }
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "После указанного контакта у Кан Сонхи были зафиксированы новые телесные изменения: симметричные татуировки с изображением глаз на нижних конечностях.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 30,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Был замечен в учащённых командировках на территорию Республики Корея.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "displayOrder": 30,
+      "name": "Чхве Хансоль",
+      "nameHref": null,
+      "age": 25,
+      "citizenship": "Республика Корея",
+      "status": "потенциальная угроза",
+      "photoPath": "psi/3fc58eba-7c36-4ba1-97d5-bd078ae491bf.jpg",
+      "photoAlt": "Чхве Хансоль",
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Частное лицо. Зафиксированы контакты с независимым консультантом Хон Джошуа.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Заключение: потенциальная угроза. Продолжать наблюдение.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Работает в магазине, специализирующемся на торговле предметами ",
+                    "type": "text"
+                  },
+                  {
+                    "text": "неустановленного происхождения",
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "classified"
+                      }
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ряд свидетелей описывают эффекты при контакте: ощущение вертиго, иррациональный страх высоты.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "displayOrder": 40,
+      "name": "Хон Джошуа",
+      "nameHref": "/partners",
+      "age": null,
+      "citizenship": "неизвестно",
+      "status": "переменный",
+      "photoPath": "psi/311fcf66-0732-4b24-8a86-908260d58f91.jpg",
+      "photoAlt": "Хон Джошуа",
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Независимый паранормальный консультант. Владелец магазина по продаже предметов ",
+                "type": "text"
+              },
+              {
+                "text": "неустановленного происхождения",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "classified"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Заключение: продолжать наблюдение.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Характеризуется как непредсказуемый.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Уровень угрозы на данный момент классифицируется как ",
+                    "type": "text"
+                  },
+                  {
+                    "text": "неопределённый",
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "classified"
+                      }
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 30,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Несмотря на установленное сотрудничество, рекомендуется продолжать наблюдение.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "displayOrder": 50,
+      "name": "Бу Сынкван",
+      "nameHref": null,
+      "age": 25,
+      "citizenship": "Республика Корея",
+      "status": "под наблюдением",
+      "photoPath": "psi/c5c96177-5ca0-435f-97cc-6d2a8239e4fa.png",
+      "photoAlt": "Бу Сынкван",
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Сотрудник юридической фирмы ",
+                "type": "text"
+              },
+              {
+                "text": "[ДАННЫЕ УДАЛЕНЫ]",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "classified"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Заключение: пассивное наблюдение.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Был замечен в контакте с Чхве Хансолем.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Прямых контактов с манифестациями на текущий момент не зафиксировано.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "displayOrder": 60,
+      "name": "Юн Джонхан",
+      "nameHref": null,
+      "age": 32,
+      "citizenship": "Республика Корея",
+      "status": "под наблюдением",
+      "photoPath": "psi/91ad17fe-e71c-44bb-a07a-245db5e7267a.png",
+      "photoAlt": "Юн Джонхан",
+      "introDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Сотрудник юридической фирмы ",
+                "type": "text"
+              },
+              {
+                "text": "[ДАННЫЕ УДАЛЕНЫ]",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "classified"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusionDoc": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Заключение: пассивное наблюдение.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "bullets": [
+        {
+          "displayOrder": 10,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Личное знакомство с Бу Сынкваном.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 20,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Был замечен в контакте с Чхве Хансолем.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "displayOrder": 30,
+          "contentDoc": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Контактов с манифестациями на текущий момент не зафиксировано.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

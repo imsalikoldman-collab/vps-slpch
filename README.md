@@ -1,6 +1,6 @@
 # SLPCH Retro SCU
 
-Внутренний стилизованный портал SCU (Special Cases Unit) на Next.js с эффектами CRT/boot, ретро-интерфейсом, PostgreSQL и админ-панелью для раздела PSI.
+Внутренний стилизованный портал SCU (Special Cases Unit) на Next.js с эффектами CRT/boot, ретро-интерфейсом, PostgreSQL и админ-панелью для разделов PSI, personnel, cases и partners.
 
 ## Стек
 
@@ -87,7 +87,7 @@ npm run prisma:seed
 - `app/` - маршруты и layout (App Router)
 - `components/` - UI-компоненты и оболочка ретро-терминала
 - `components/admin/` - компоненты панели администратора
-- `content/` - статические данные legacy-разделов
+- `content/` - fallback/legacy данные для публичных разделов
 - `context/` - глобальный FX-контекст (звук/переходы/safe mode)
 - `lib/` - prisma/auth/rich-text/media утилиты
 - `prisma/` - схема, миграции и seed
@@ -100,13 +100,23 @@ npm run prisma:seed
 ## Где менять контент
 
 - Главное меню: `content/nav.ts`
-- Кадры: `content/personnel.ts`
-- Архив дел: `content/cases.ts`
-- Партнеры: `content/partners.ts`
-- Лица особого интереса (runtime): PostgreSQL (`PsiCard`, `PsiCardBullet`)
-- Лица особого интереса (legacy reference): `content/psi.ts`
+- Runtime-контент всех карточек: PostgreSQL через Prisma-модели
+  - `PersonnelCard`
+  - `CaseCard` + `CaseCardBullet`
+  - `PartnerCard` + `PartnerCardBullet`
+  - `PsiCard` + `PsiCardBullet`
+- Админские CRUD UI:
+  - `components/admin/PersonnelAdminSection.tsx`
+  - `components/admin/CasesAdminSection.tsx`
+  - `components/admin/PartnersAdminSection.tsx`
+  - `components/admin/PsiAdminPanel.tsx`
+- Legacy/fallback контент (используется при недоступности БД):
+  - `content/personnel.ts`
+  - `content/cases.ts`
+  - `content/partners.ts`
+  - `content/psi.ts`
 
-Публичная страница PSI (`app/psi/page.tsx`) рендерится из БД.
+Публичные страницы `/personnel`, `/cases`, `/partners`, `/psi` рендерятся из БД и используют fallback на `content/*` при ошибке доступа к данным.
 
 ## FX и переходы
 
@@ -115,6 +125,25 @@ npm run prisma:seed
 - Навигация с оверлеем перехода: `components/RetroLink.tsx` и `components/RouteFxOverlay.tsx`
 - Вход админа открывается кликом по эмблеме `POLICE` в `TopHeader`
 - Админ-панель: `/admin`
+
+## API админки
+
+- Аутентификация:
+  - `POST /api/admin/login`
+  - `POST /api/admin/logout`
+  - `GET /api/admin/session`
+- CRUD-контент:
+  - `GET/POST /api/admin/personnel`
+  - `PATCH/DELETE /api/admin/personnel/[id]`
+  - `GET/POST /api/admin/cases`
+  - `PATCH/DELETE /api/admin/cases/[id]`
+  - `GET/POST /api/admin/partners`
+  - `PATCH/DELETE /api/admin/partners/[id]`
+  - `GET/POST /api/admin/psi`
+  - `PATCH/DELETE /api/admin/psi/[id]`
+- Медиа:
+  - `POST /api/admin/upload/photo`
+  - `GET /api/media/psi/[file]`
 
 ## Переменные окружения
 

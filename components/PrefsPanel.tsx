@@ -2,7 +2,12 @@
 
 import { useFx } from "@/context/FxContext";
 
-export default function PrefsPanel() {
+interface PrefsPanelProps {
+  radioEnabled: boolean;
+  onToggleRadio: () => void;
+}
+
+export default function PrefsPanel({ radioEnabled, onToggleRadio }: PrefsPanelProps) {
   const { preferences, toggleFxEnabled, toggleSound, toggleSafeMode, playClick } = useFx();
 
   const fxLevelLabel = preferences.fxEnabled ? preferences.fxLevel.toUpperCase() : "OFF";
@@ -21,6 +26,11 @@ export default function PrefsPanel() {
     toggleSafeMode();
   };
 
+  const handleRadioToggle = () => {
+    playClick();
+    onToggleRadio();
+  };
+
   return (
     <div className="prefs-panel">
       <button className={`pref-btn ${preferences.fxEnabled ? "active" : ""}`} type="button" onClick={handleFxToggle}>
@@ -33,6 +43,10 @@ export default function PrefsPanel() {
 
       <button className={`pref-btn ${preferences.safeMode ? "active" : ""}`} type="button" onClick={handleSafeToggle}>
         SAFE MODE {preferences.safeMode ? "ON" : "OFF"}
+      </button>
+
+      <button className={`pref-btn ${radioEnabled ? "active" : ""}`} type="button" onClick={handleRadioToggle}>
+        RADIO {radioEnabled ? "ON" : "OFF"}
       </button>
 
       <span className="fx-level">FX: {fxLevelLabel}</span>
